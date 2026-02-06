@@ -1,0 +1,46 @@
+### obtener todos los entregas
+GET http://localhost:3000/api/v2/entregas
+
+### crear un nuevo entrega
+# @name createEntrega
+POST http://localhost:3000/api/v2/entregas
+Content-Type: application/json
+
+{
+  "lote": 333,
+  "zona": "Centro",
+  "repartidor": 1
+}
+
+### ID
+@id = 1
+###{{createEntrega.response.body.data.id}}
+
+### obtener una entrega
+GET http://localhost:3000/api/v2/entregas/{{id}}
+
+### modificar una entrega (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/v2/entregas/{{id}}
+Content-Type: application/json
+
+{
+  "lote": 555,
+  "zona": "Noroeste"
+}
+
+### POST ENTREGA TO DELETE
+# @name createEntregaToDelete
+POST http://localhost:3000/api/v2/entregas
+Content-Type: application/json
+
+{
+  "lote": 444,
+  "zona": "Sureste",
+  "repartidor": 1
+}
+
+### DELETE
+@idToDelete = {{createEntregaToDelete.response.body.data.id}}
+
+### borrar una entrega
+DELETE http://localhost:3000/api/v2/entregas/{{idToDelete}}

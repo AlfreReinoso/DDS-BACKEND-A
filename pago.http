@@ -1,0 +1,39 @@
+### obtener todos los pagos
+GET http://localhost:3000/api/v2/pago
+
+### crear un nuevo Pago
+# @name createPago
+POST http://localhost:3000/api/v2/pago
+Content-Type: application/json
+
+{
+  "tipoPago":1,
+  "pedido":1
+}
+
+### ID
+@id = {{createPago.response.body.data.id}}
+
+### obtener un pago
+GET http://localhost:3000/api/v2/pago/{{id}}
+
+### modificar un pago (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/v2/pago/{{id}}
+Content-Type: application/json
+
+{
+  "tipoPago":2
+}
+
+### POST PAGO TO DELETE
+# @name createPagooDelete
+POST http://localhost:3000/api/v2/pago
+Content-Type: application/json
+
+{
+  "tipoPago":2,
+  "pedido":2
+}
+
+### DELETE
+@idToDelete = {{createPagooDelete.response.body.data.id}}

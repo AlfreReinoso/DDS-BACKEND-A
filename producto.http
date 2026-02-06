@@ -1,0 +1,53 @@
+### obtener todos los productos
+GET http://localhost:3000/api/v2/producto
+
+### crear un nuevo producto
+# @name createProducto
+POST http://localhost:3000/api/v2/producto
+Content-Type: application/json
+
+{
+  "descripcion": "Leche",
+  "stock": 1000,
+  "precio": 1600,
+  "tipoProducto":1
+}
+
+### ID
+@codigo = {{createProducto.response.body.data.codigo}}
+
+### obtener un producto
+GET http://localhost:3000/api/v2/producto/{{codigo}}
+
+### modificar un producto (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/v2/producto/{{codigo}}
+Content-Type: application/json
+
+{
+  "descripcion": "Leche LIGHT",
+  "stock": 500,
+  "precio": 1800
+}
+
+### POST PRODUCTO TO DELETE
+# @name createProductoToDelete
+POST http://localhost:3000/api/v2/producto
+Content-Type: application/json
+
+
+{
+  "descripcion": "Producto A",
+  "stock": 10,
+  "precio": 100,
+  "tipoProducto": {
+    "id": 1,
+    "nombre":"HIPHONE"
+  }
+}
+
+
+### DELETE
+@idToDelete = {{createProductoToDelete.response.body.data.id}}
+
+### borrar un producto
+DELETE http://localhost:3000/api/v2/producto/{{idToDelete}}

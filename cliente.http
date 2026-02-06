@@ -1,0 +1,55 @@
+### obtener todos los clientes
+GET http://localhost:3000/api/v2/clientes
+
+### crear un nuevo cliente
+# @name createCliente
+POST http://localhost:3000/api/v2/clientes
+Content-Type: application/json
+
+{
+  "cuit": 6789,
+  "apellidoNombre": "Messi",
+  "telefono": 325135135,
+  "email": "ewfawefaewf@gmail.com",
+  "domicilio": "adsfadsf 345",
+  "zona": "Rosario"
+}
+
+### ID
+@id = {{createCliente.response.body.data.id}}
+
+### obtener un cliente
+GET http://localhost:3000/api/v2/clientes/{{id}}
+
+### modificar un cliente (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/v2/clientes
+Content-Type: application/json
+
+{
+  "id":1,
+  "cuit": 6789,
+  "apellidoNombre": "Lionel Messi Bruno Goleado",
+  "telefono": 34135135,
+  "email": "Lionel.Messi@gmail.com",
+  "domicilio": "Argentina 456"
+}
+
+### POST CLIENTE TO DELETE
+# @name createClienteToDelete
+POST http://localhost:3000/api/v2/clientes
+Content-Type: application/json
+
+{
+  "cuit": 1234,
+  "apellidoNombre": "Cristiano Ronaldo",
+  "telefono": 263975210,
+  "email": "Cristiano.Ronaldo@gmail.com",
+  "domicilio": "Portugal 345",
+  "zona": "Lisboa"
+}
+
+### DELETE
+@idToDelete = {{createClienteToDelete.response.body.data.id}}
+
+### borrar un cliente
+DELETE http://localhost:3000/api/v2/clientes/{{idToDelete}}

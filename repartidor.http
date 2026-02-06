@@ -1,0 +1,47 @@
+### obtener todos los repartidores
+GET http://localhost:3000/api/v2/repartidores
+
+### crear un nuevo repartidor
+# @name createRepartidor
+POST http://localhost:3000/api/v2/repartidores
+Content-Type: application/json
+
+{
+  "cuit": 325235,
+  "apellidoNombre": "Martinez Bruno",
+  "vehiculo": "Peugeot 208",
+  "zona": "Rosario"
+}
+
+### ID
+@id = {{createRepartidor.response.body.data.id}}
+
+### obtener un repartidor
+GET http://localhost:3000/api/v2/repartidores/{{id}}
+
+### modificar un repartidor (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/v2/repartidores/{{id}}
+Content-Type: application/json
+
+{
+  "apellidoNombre": "Martinez Bruno Elias",
+  "zona": "Rosario Centro"
+}
+
+### POST REPARTIDOR TO DELETE
+# @name createRepartidorToDelete
+POST http://localhost:3000/api/v2/repartidores
+Content-Type: application/json
+
+{
+  "cuit": 23546,
+  "apellidoNombre": "Reinoso Alfredo",
+  "vehiculo": "Vento",
+  "zona": "Rosario"
+}
+
+### DELETE
+@idToDelete = {{createRepartidorToDelete.response.body.data.id}}
+
+### borrar un repartidor
+DELETE http://localhost:3000/api/v2/repartidores/{{idToDelete}}
