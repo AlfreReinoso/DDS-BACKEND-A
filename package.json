@@ -5,9 +5,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-  "build": "tsc",
   "start": "node dist/app.js",
-  "start:dev": "pnpm tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/app.js\""
+  "build": "echo \"no build needed\""
   },
   "keywords": [],
   "author": "",
