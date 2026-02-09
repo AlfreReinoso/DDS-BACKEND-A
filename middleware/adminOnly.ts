@@ -10,4 +10,4 @@ export const adminOnly = (
     return res.status(403).json({ message: 'Acceso solo para administradores' });
   }
   next();
-};
+}; 
